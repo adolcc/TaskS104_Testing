@@ -23,8 +23,8 @@ public class LibraryAdminTest {
 
     @Test
     void testListIsNotNullAfterCreation() {
-        assertNotNull(admin.listAllBooks());
-        assertTrue(admin.listAllBooks().isEmpty());
+        assertNotNull(admin.listAllBooks(), "The list of books should not be null after initialization.");
+        assertTrue(admin.listAllBooks().isEmpty(), "The list of books should be empty after initialization.");
     }
 
     @Test
@@ -33,7 +33,7 @@ public class LibraryAdminTest {
         admin.addBook(new Book("The Hobbit", "John Ronald Reuel Tolkien"));
         admin.addBook(new Book("Harry Potter and the Sorcerer's Stone", "J.K. Rowling"));
 
-        assertEquals(3, admin.getTotalBooks());
+        assertEquals(3, admin.getTotalBooks(), "The total number of books should be 3 after adding three books.");
     }
 
     @Test
@@ -53,9 +53,9 @@ public class LibraryAdminTest {
     void testNoDuplicateTitlesInList() {
         Book book = new Book("The Hobbit", "John Ronald Reuel Tolkien");
         assertTrue(admin.addBook(book));
-        assertFalse(admin.addBook(book)); // Intento de duplicado
+        assertFalse(admin.addBook(book));
 
-        assertEquals(1, admin.getTotalBooks());
+        assertEquals(1, admin.getTotalBooks(), "The total number of books should be 1 after attempting to add a duplicate.");
     }
 
     @Test
@@ -64,7 +64,7 @@ public class LibraryAdminTest {
         admin.addBook(new Book("The Hobbit", "John Ronald Reuel Tolkien"));
 
         Book book = admin.getBookByIndex(1);
-        assertEquals("The Hobbit", book.getTitle());
+        assertEquals("The Hobbit", book.getTitle(), "Book at index 1 should not be null.");
     }
 
     @Test
@@ -73,7 +73,7 @@ public class LibraryAdminTest {
 
         admin.addBook(new Book("Harry Potter and the Sorcerer's Stone", "J.K. Rowling"));
 
-        assertEquals(initialSize + 1, admin.getTotalBooks());
+        assertEquals(initialSize + 1, admin.getTotalBooks(), "The total number of books should increase by 1 after adding a book.");
     }
 
     @Test
@@ -81,7 +81,7 @@ public class LibraryAdminTest {
         admin.addBook(new Book("The Hobbit", "John Ronald Reuel Tolkien"));
         admin.deleteBookByTitle("The Hobbit");
 
-        assertEquals(0, admin.getTotalBooks());
+        assertEquals(0, admin.getTotalBooks(), "The total number of books should be 0 after deleting 'The Hobbit'.");
     }
 
     @Test
@@ -91,14 +91,14 @@ public class LibraryAdminTest {
         admin.addBook(new Book("Harry Potter and the Sorcerer's Stone", "J.K. Rowling"));
 
         List<Book> sortedList = admin.listAllBooks();
-        assertEquals("Atmosphere", sortedList.get(0).getTitle());
-        assertEquals("Harry Potter and the Sorcerer's Stone", sortedList.get(1).getTitle());
-        assertEquals("The Hobbit", sortedList.get(2).getTitle());
+        assertEquals("Atmosphere", sortedList.get(0).getTitle(), "After initial additions, the first book should be 'Atmosphere'.");
+        assertEquals("Harry Potter and the Sorcerer's Stone", sortedList.get(1).getTitle(), "After initial additions, the second book should be 'Harry Potter and the Sorcerer's Stone'.");
+        assertEquals("The Hobbit", sortedList.get(2).getTitle(), "After initial additions, the third book should be 'The Hobbit'.");
 
         admin.deleteBookByTitle("Harry Potter and the Sorcerer's Stone");
 
         sortedList = admin.listAllBooks();
-        assertEquals("Atmosphere", sortedList.get(0).getTitle());
-        assertEquals("The Hobbit", sortedList.get(1).getTitle());
+        assertEquals("Atmosphere", sortedList.get(0).getTitle(), "After deleting 'Harry Potter', the first book should remain 'Atmosphere'.");
+        assertEquals("The Hobbit", sortedList.get(1).getTitle(), "After deleting 'Harry Potter', the second book should be 'The Hobbit'.");
     }
 }

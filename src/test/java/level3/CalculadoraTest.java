@@ -6,30 +6,30 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CalculadoraTest {
     @Test
-    public void testSumar() {
+    public void testAdd() {
         Calculadora calculadora = new Calculadora();
-        int resultado = calculadora.sumar(2, 3);
+        int resultado = calculadora.add(2, 3);
         assertEquals(5, resultado);
     }
 
     @Test
-    public void testRestar() {
+    public void testSubtract() {
         Calculadora calculadora = new Calculadora();
-        int resultado = calculadora.restar(5, 3);
+        int resultado = calculadora.subtract(5, 3);
         assertEquals(2, resultado);
     }
 
     @Test
-    public void testMultiplicar() {
+    public void testMultiply() {
         Calculadora calculadora = new Calculadora();
-        int resultado = calculadora.multiplicar(4, 4);
+        int resultado = calculadora.multiply(4, 4);
         assertEquals(16, resultado);
     }
 
     @Test
-    public void testDividir() {
+    public void testDivide() {
         Calculadora calculadora = new Calculadora();
-        int resultado = calculadora.dividir(4, 2);
+        int resultado = calculadora.divide(4, 2);
         assertEquals(2, resultado);
     }
 
